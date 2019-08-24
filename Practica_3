@@ -1,0 +1,37 @@
+base1<-read.csv("C:\\Users\\ALUMNO-C19.RTIC-C19\\Desktop\\TR_PERSONA15.csv")
+ls(base1)
+class(base1$SEXO)
+
+#temuestra solo lo encontrado en la muestra
+table(base1$SEXO)
+head(base1)
+
+#packages para generar todos lo datos
+install.packages("questionr")
+require(questionr)
+
+#esto te muesta el tota lde hombres y mujeres en todo el estado
+wtd.table(base1$SEXO, weights=base1$FACTOR)
+sum(wtd.table(base1$SEXO, weights=base1$FACTOR))
+
+# te agrupa las esdas en grupos que tu especifques
+table(base1$MUN)
+table(base1$EDAD)
+base1$gpoedad<-ifelse(base1$EDAD <=14, 1,
+                      ifelse  (base1$EDAD >=15  & base1$EDAD <=29, 2,
+                               ifelse ( base1$EDAD >=30 & base1$EDAD <=99,3,4)))
+table(base1$gpoedad)
+
+#cambia el tipo de variable
+base1$EDAD<-as.numeric(base1$EDAD)
+class(base1$EDAD)
+
+#
+aculco<-subset(base1,base1$NOM_MUN=="Aculco")
+metepec<-subset(base1,base1$NOM_MUN=="Metepec")
+valle<-subset(base1,base1$NOM_MUN=="Valle de Bravo")
+
+
+valle_aculco<-subset(base1,base1$NOM_MUN=="Aculco" | base1$NOM_MUN=="Valle de Bravo")
+met_tla<-subset(base1,base1$NOM_MUN=="Metepec" | base1$NOM_MUN=="Tlatlaya")
+
