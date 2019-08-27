@@ -1,0 +1,33 @@
+x<-c(125.3,98.2,201.4,147.3,145.9,124.7,112.2,120.2,161.2,178.9,159.5,145.8,75.1,151.4,144.2,125,198.8,132.5,159.6,110.7)
+y<-c(77.9,76.8,81.5,79.8,78.2,78.3,77.5,77,80.1,80.2,79.9,79,76.7,78.2,79.5,78.1,81.5,77,79,78.6)
+
+plot(x,y)
+
+Y<-c(79)
+X<-c(145.8)
+
+#############clase#############
+sxx=sum((x-mean(x))^2)
+sxy=sum((x-mean(x))*(y-mean(y)))
+sxy
+b1=(sxy)/(sxx)
+b1
+bo=mean(y)-b1*mean(x)
+bo
+# La recta sale tamién ocupoando
+lm(y~x)
+
+#Obtener Y gorrito y el Residuo si el residuo es negativo esta abajo de la recta
+ygorrito<-bo+b1*(X)
+yresiduo<-Y-ygorrito
+YY<-bo+b1*(x)
+YR<-(y-YY)^2
+SSE<-sum(YR)
+
+#Te redondea el nunero a los decimales que quieras
+round(YR,2)
+
+#sacar S
+
+recta<-lm(y~x)
+abline(recta)
