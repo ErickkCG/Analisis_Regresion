@@ -24,6 +24,20 @@ YY<-bo+b1*(x)
 YR<-(y-YY)^2
 SSE<-sum(YR)
 
+
+#para sacar SST
+y2<-((sum(y))^2)/length(y)
+y1<-sum(y^2)
+SST<-y1-y2
+
+#entonces
+r2<-(1-(SSE/SST))
+
+
+summary(modelo)
+names(model)
+
+
 #Te redondea el nunero a los decimales que quieras
 round(YR,2)
 
