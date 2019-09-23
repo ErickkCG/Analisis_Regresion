@@ -1,0 +1,45 @@
+x<-c(50,50,80,80,110,110,140,140,170,170)
+y<-c(17052,14063,26264,19600,21952,26362,26362,26752,31654,32928)
+
+#Grafique he interprete la grafica
+
+sxx=sum((x-mean(x))^2)
+sxy=sum((x-mean(x))*(y-mean(y)))
+
+b1=(sxy)/(sxx)
+bo=mean(y)-b1*mean(x)
+
+ygorrito<-bo+b1*(X)
+yresiduo<-Y-ygorrito
+YY<-bo+b1*(x)
+YR<-(y-YY)^2
+SSE<-sum(YR)
+
+y2<-((sum(y))^2)/length(y)
+y1<-sum(y^2)
+SST<-y1-y2
+
+r2<-(1-(SSE/SST))
+
+#intervalo de confianza Con 2 grados de libertad porque son dos parametros desconocidos b1 y b0
+
+#varianza
+s2<-(SSE/(length(x)-2))
+
+SB<-(s2^(1/2))/((sxx)^(1/2))
+
+
+#Estos son los intervalos de confianza
+
+intervalo1<-b1-2.3060*SB
+
+intervalo2<-b1+2.3060*SB
+
+
+
+plot(x,y)
+plot(x,YY,type="l")
+
+
+#Para el nivel de confianza en R
+T<-qt(p=.95+.05/2,df=8, lower.tail = TRUE)
