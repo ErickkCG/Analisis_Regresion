@@ -1,0 +1,70 @@
+x1<-c(0,20,0,20,40,0,5,10,15,20,0,0,0,0,20,20,20,20)
+x2<-c(0,0,1,1,1,5,5,5,5,5,0,1,3,5,0,1,3,5)
+y<-c(6.1,7.5,6.2,7.6,8.6,6.1,6.4,6.7,6.9,7.2,6.1,6.2,6.1,6.1,7.5,7.6,7.2,7.2)
+
+mrm<-lm(y~x1+x2)
+summary(mrm)
+
+# A) Sacar B0 B1 B2
+B0<-6.227686
+B1<-0.061823
+B2<-(-0.038721)
+
+# B) sacar R2ajustada
+R2a<-0.9817
+
+# C) INTERVALO DE CONFIANZA DE B1
+tB<-qt(p=.95+.05/2,df=15,lower.tail=T)
+
+ICB1<-B1-tB*0.002099
+ICB2<-B1+tB*0.002099
+
+
+# D) CON x1*=20 Y x2*=1 OBTENER 7.425425
+x11<-20
+x22<-1
+
+yg<-B0+(B1*x11)+(B2*x22)
+
+# E) OBTENER LA f
+R2<-.9838
+K<-2
+n<-18
+
+f<-(R2/K)/((1-R2)/(n-(K+1)))
+
+#F-statistic: 456.3 on 2 and 15 DF,  p-value: 3.678e-14
+#EL MODELO ES UTIL PARA EXPLICAR LA VARIABLE DEPENDIENTE
+
+
+# F) INTERPRETAR LOS P-VALUES
+
+  #EN AMOBS CASA EL P-VALUE ES MENOR A 0.05(1.09e-14 Y 0.00357)
+  #LO CUAL INDICA QUE Y SI ES DEPENDIENTE DE LAS 2 VARIABLES 
+  # Y QUE LAS BETAS SI SIN RELEVANTES PARA Y gorrito
+
+
+# G) OBTENER INTERVALO DE CONFIANZA 
+t<-qt(p=.95+.05/2,df=15,lower.tail=T)
+S<-.1001
+Syg<-.0332
+
+IC1<-yg-t*Syg
+IC2<-yg+t*Syg
+
+INCO<-predict(mrm,newdata = data.frame(x1=20,x2=1),interval = "confidence",level = .95)
+
+
+# H) INTERVALO DE PREDICCION
+IP1<-yg-t*(S^2+Syg^2)^(1/2)
+IP2<-yg+t*(S^2+Syg^2)^(1/2)
+
+INPR<-predict(mrm,newdata = data.frame(x1=20,x2=1),interval = "prediction",level = .95)
+
+
+#PARA SACAR Syg
+SYGORRO<-(7.6-yg)^2/(n-(K+1))
+
+
+help("predict")
+
