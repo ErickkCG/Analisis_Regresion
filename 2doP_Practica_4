@@ -1,0 +1,18 @@
+x1<-c(21,21,7,7,28,0,14,14,14)
+x2<-c(.65,.55,.65,.55,.60,.60,.70,.50,.60)
+y<-c(33.55,47.55,35,35.9,40.9,39.1,31.55,48,42.3)
+
+mrm<-lm(y~x1+x2)
+summary(mrm)
+
+ # calcular Yg con x1=14 x2=.6
+ # Yg=39.3142
+
+#ahora con mas variables
+x3<-(x1*x2)
+x4<-(x2^2)
+
+mrm1<-lm(y~x1+x2+x3+x4)
+summary(mrm1)
+
+#determinar si
