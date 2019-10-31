@@ -1,0 +1,41 @@
+x<-c(220,220,220,220,370,370,370,370,440,440,440,440,680,680,680,680,860,860,860,860)
+y<-c(24,22,19.1,15.5,26.3,24.6,23.1,21.2,25.2,24,21.7,19.2,17,14.9,13,11.8,12.2,11.2,6.6,2.8)
+xx<-c(220,370,440,680,860)
+
+plot(x,y)
+datos<-data.frame(x,y)
+mod_poli<-lm(y~poly(x,2,raw=TRUE), data = datos)
+summary(mod_poli)
+
+# inciso 2) Estas son las Betas que me da el modelo con un polinomio de 3er grado(x^2)  
+    B0<-17.7700
+    B1<-(-22.8624)
+    B2<-(-10.9819)
+
+    Yg<-B0+(B1*x)+(B2*(x)^2)
+    Ygg<-B0+(B1*xx)+(B2*(xx)^2)
+
+plot(x,y) #datos originales
+plot(x,Yg) #datos estimados
+plot(xx,Ygg) #datos sin repetir
+
+#inciso 3) Son los valores de Ygorrito que nos arroja el modelo
+ypredit<-predict(mod_poli,datos)
+
+
+#inciso 1) Graficas de los datos y de los modelos
+  plot(x,y)
+  plot(x,ypredit,type="l")
+  #abline(x,ypredit)
+
+
+
+  #LO QUE NOS DEBIO SALIR EN LAS BETAS
+  # B0=14.521     B1=.04323     B2=-0.0000601
+  
+  #Y LOS YGORRTIOS SI SALEN 
+
+  #COMO DIFIEREN HAY QUE USAR LA FORMULA DE I
+
+
+
